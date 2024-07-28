@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BateauMilitaire.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bataille-navale</a> &gt; <a href="index.source.html" class="el_package">fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires</a> &gt; <span class="el_source">BateauMilitaire.java</span></div><h1>BateauMilitaire.java</h1><pre class="source lang-java linenums">package fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires;
+
+
+import java.util.Objects;
+
+import fr.ensma.a3.ia.bataillenavale.elements.bateaux.Bateau;
+import fr.ensma.a3.ia.bataillenavale.elements.comportement.attaques.Classique;
+import fr.ensma.a3.ia.bataillenavale.elements.comportement.attaques.IAttaquant;
+import fr.ensma.a3.ia.bataillenavale.elements.comportement.attaques.ICompoAttaque;
+import fr.ensma.a3.ia.bataillenavale.elements.comportement.deplacements.IDeplacable;
+import fr.ensma.a3.ia.bataillenavale.elements.comportement.deplacements.IDeplacement;
+import fr.ensma.a3.ia.bataillenavale.outils.ValParamException;
+
+public abstract class BateauMilitaire extends Bateau implements IAttaquant, IDeplacable{
+    protected Integer puissanceDAttaque;
+    protected ICompoAttaque compAtt;
+
+    public BateauMilitaire(String label, Integer taille, Integer res, Integer atk) {
+<span class="nc" id="L19">        super(label, taille, res); // Appel au constructeur de la classe Bateau</span>
+<span class="nc" id="L20">        this.puissanceDAttaque = Objects.requireNonNull(atk);</span>
+<span class="nc" id="L21">        compAtt = new Classique();</span>
+<span class="nc" id="L22">    }</span>
+
+    public final void setCompAtt(final ICompoAttaque att) throws ValParamException {
+        try {
+<span class="nc" id="L26">            compAtt = Objects.requireNonNull(att);</span>
+<span class="nc" id="L27">        } catch (NullPointerException ex) {</span>
+<span class="nc" id="L28">            throw new ValParamException(&quot;Param att null...&quot;);</span>
+<span class="nc" id="L29">        }</span>
+<span class="nc" id="L30">    }</span>
+
+    @Override
+    public void deplacer() {
+        try {
+<span class="nc" id="L35">            compDepl.deplacer(this);</span>
+<span class="nc" id="L36">        } catch (ValParamException ex) {</span>
+<span class="nc" id="L37">            ex.printStackTrace();</span>
+<span class="nc" id="L38">        }</span>
+<span class="nc" id="L39">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

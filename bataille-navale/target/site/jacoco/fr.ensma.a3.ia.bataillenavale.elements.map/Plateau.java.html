@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Plateau.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bataille-navale</a> &gt; <a href="index.source.html" class="el_package">fr.ensma.a3.ia.bataillenavale.elements.map</a> &gt; <span class="el_source">Plateau.java</span></div><h1>Plateau.java</h1><pre class="source lang-java linenums">package fr.ensma.a3.ia.bataillenavale.elements.map;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import fr.ensma.a3.ia.bataillenavale.elements.bateaux.Bateau;
+import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.Torpilleur;
+
+
+public class Plateau {
+    private Integer taille; // Taille du plateau (10x10 dans notre cas)
+    public Case[][] grille; // Grille du plateau contenant les cases
+<span class="nc" id="L15">    protected BufferedReader in = new BufferedReader(new InputStreamReader(System.in));</span>
+
+
+<span class="nc" id="L18">    public Plateau() {</span>
+<span class="nc" id="L19">        Boolean error = true;</span>
+<span class="nc bnc" id="L20" title="All 2 branches missed.">        while (error) {</span>
+<span class="nc" id="L21">            error = demanderTaillePlateau(error);</span>
+        }
+<span class="nc" id="L23">        this.grille = new Case[taille][taille];</span>
+<span class="nc bnc" id="L24" title="All 2 branches missed.">        for (Integer i = 0; i &lt; taille; i++) {</span>
+<span class="nc bnc" id="L25" title="All 2 branches missed.">            for (Integer j = 0; j &lt; taille; j++) {</span>
+<span class="nc" id="L26">            this.grille[i][j] = new Case(i, j);</span>
+            }
+        }
+<span class="nc" id="L29">        System.out.println(&quot;Grille créée&quot;);</span>
+<span class="nc" id="L30">    }</span>
+
+    private Boolean demanderTaillePlateau(Boolean error) {
+<span class="nc" id="L33">        String input = &quot;&quot;;</span>
+<span class="nc" id="L34">        System.out.print(&quot;Quelle taille de plateau désirez-vous : &quot;);</span>
+        try {
+<span class="nc" id="L36">            input = this.in.readLine();</span>
+<span class="nc" id="L37">        } catch (java.io.IOException e) {</span>
+<span class="nc" id="L38">            System.out.println(&quot;Une erreur est survenue : &quot; + e);</span>
+<span class="nc" id="L39">        }</span>
+        try {
+<span class="nc" id="L41">            Integer t = Integer.valueOf(input);</span>
+<span class="nc bnc" id="L42" title="All 4 branches missed.">            if (t &lt; 7 || t &gt; 15) {</span>
+<span class="nc" id="L43">                System.out.println(&quot;Veuillez entrer un entier entre 7 et 15&quot;);</span>
+            } else {
+<span class="nc" id="L45">                this.taille = t;</span>
+<span class="nc" id="L46">                error = false;</span>
+            } 
+<span class="nc" id="L48">        } catch (NumberFormatException e) {</span>
+<span class="nc" id="L49">            System.out.println(&quot;Veuillez entrer un entier&quot; + e);</span>
+<span class="nc" id="L50">        }</span>
+<span class="nc" id="L51">        return error;</span>
+    }
+
+    // Getters et setters pour la taille du plateau
+    public Integer getTaille() {
+<span class="nc" id="L56">        return taille;</span>
+    }
+
+    public void setTaille(Integer taille) {
+<span class="nc" id="L60">        this.taille = taille;</span>
+<span class="nc" id="L61">    }</span>
+
+    // // Méthode pour vérifier si un emplacement est valide pour placer un élément
+    // private boolean emplacementValide(ElementJeu element, Integer colonne, Integer ligne) {
+    //     List&lt;Case&gt; casesElement = element.getCases();
+    //     for (Case c : casesElement) {
+    //         Integer col = colonne + c.getColonne();
+    //         Integer lin = ligne + c.getLigne();
+    //         // Vérifier si la case est dans les limites du plateau
+    //         if (col &lt; 0 || col &gt;= taille || lin &lt; 0 || lin &gt;= taille) {
+    //             return false;
+    //         }
+    //         // Vérifier si la case est déjà occupée
+    //         if (grille[col][lin] != null) {
+    //             return false;
+    //         }
+    //     }
+    //     return true;
+    // }
+
+
+    // Méthode pour afficher l'état actuel du plateau (débogage)
+    public void afficherPlateau() {
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        for (Integer i = 0; i &lt; taille; i++) {</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            for (Integer j = 0; j &lt; taille; j++) {</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">                if (grille[i][j] != null) {</span>
+<span class="nc" id="L87">                    System.out.print(&quot; X &quot;); // Case occupée par un élément de jeu</span>
+                } else {
+<span class="nc" id="L89">                    System.out.print(&quot; . &quot;); // Eau</span>
+                }
+            }
+<span class="nc" id="L92">            System.out.println(); // Nouvelle ligne pour chaque ligne du plateau</span>
+        }
+<span class="nc" id="L94">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Case.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bataille-navale</a> &gt; <a href="index.source.html" class="el_package">fr.ensma.a3.ia.bataillenavale.elements.map</a> &gt; <span class="el_source">Case.java</span></div><h1>Case.java</h1><pre class="source lang-java linenums">package fr.ensma.a3.ia.bataillenavale.elements.map;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+import fr.ensma.a3.ia.bataillenavale.elements.ElementJeu;
+import fr.ensma.a3.ia.bataillenavale.elements.comportement.attaques.IAttaquable;
+
+
+public class Case implements ICase, IAttaquable{
+    private Integer colonne;
+    private Integer ligne;
+    public Map&lt;ElementJeu, Integer&gt; pointsDeVieParElement;
+
+<span class="nc" id="L16">    public Case(Integer colonne, Integer ligne) {</span>
+<span class="nc" id="L17">        this.colonne = colonne;</span>
+<span class="nc" id="L18">        this.ligne = ligne;</span>
+<span class="nc" id="L19">        this.pointsDeVieParElement = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L20">    }</span>
+
+    public Integer getColonne() {
+<span class="nc" id="L23">        return colonne;</span>
+    }
+
+    public Integer getLigne() {
+<span class="nc" id="L27">        return ligne;</span>
+    }
+
+    public boolean contientElement(ElementJeu element) {
+<span class="nc" id="L31">        return this.pointsDeVieParElement.containsKey(element);</span>
+    }
+
+    @Override
+    public void rejoindreCase(ElementJeu obs, Integer pointsDeVie) {
+<span class="nc" id="L36">        this.pointsDeVieParElement.put(obs, pointsDeVie);</span>
+<span class="nc" id="L37">    }</span>
+
+    @Override
+    public void quitterCase(ElementJeu obs) {
+<span class="nc" id="L41">        this.pointsDeVieParElement.remove(obs);</span>
+<span class="nc" id="L42">    }</span>
+
+    @Override
+    public void estAttaque(Integer puissAtk) {
+<span class="nc" id="L46">        Set&lt;ElementJeu&gt; elements = this.pointsDeVieParElement.keySet();</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        for (ElementJeu element : elements) {</span>
+<span class="nc" id="L48">            Integer pointsDeVieActuels = this.pointsDeVieParElement.get(element);</span>
+<span class="nc" id="L49">            this.pointsDeVieParElement.put(element, pointsDeVieActuels - puissAtk);</span>
+<span class="nc" id="L50">            System.out.println(element + &quot; : Oh non ma vie!!!&quot; + pointsDeVieActuels + &quot;--&gt;&quot; + this.pointsDeVieParElement.get(element));</span>
+<span class="nc" id="L51">        }</span>
+<span class="nc" id="L52">    }</span>
+    public void stringify() {
+<span class="nc" id="L54">        System.out.println(this.pointsDeVieParElement);</span>
+<span class="nc" id="L55">    }</span>
+
+
+    // @Override
+    // public void estAttaque(Integer puissance) throws MortPersonnageException {
+    //     Integer pointsDeVieAvant = pointsDeVie;
+    //     pointsDeVie = pointsDeVie - puissance;
+    //     logger.info(&quot;Aiieee !! ça fait mal quand même !! &quot; + pointsDeVieAvant + &quot; --&gt; &quot; + pointsDeVie);
+    //     if (pointsDeVie &lt;= 0) {
+    //         logger.warn(&quot;Ahhh ... je meurs .... &quot;);
+    //         throw new MortPersonnageException(this);
+    //     }
+    // }
+
+    // @Override
+    // public String getIdentPerso() {
+    //     // TODO Auto-generated method stub
+    //     throw new UnsupportedOperationException(&quot;Unimplemented method 'getIdentPerso'&quot;);
+    // }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JoueurHumain.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bataille-navale</a> &gt; <a href="index.source.html" class="el_package">fr.ensma.a3.ia.bataillenavale</a> &gt; <span class="el_source">JoueurHumain.java</span></div><h1>JoueurHumain.java</h1><pre class="source lang-java linenums">package fr.ensma.a3.ia.bataillenavale;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+import java.util.regex.Pattern;
+
+import fr.ensma.a3.ia.bataillenavale.elements.bateaux.Bateau;
+import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.BateauMilitaire;
+import fr.ensma.a3.ia.bataillenavale.elements.map.Case;
+import fr.ensma.a3.ia.bataillenavale.elements.objets.Bombe;
+import fr.ensma.a3.ia.bataillenavale.outils.Config;
+import fr.ensma.a3.ia.bataillenavale.outils.CoordinateHelper;
+import fr.ensma.a3.ia.bataillenavale.outils.MortPersonnageException;
+
+/**
+ * Represents a human player
+ */
+public class JoueurHumain extends Joueur {
+
+<span class="nc" id="L21">    public JoueurHumain() {</span>
+<span class="nc" id="L22">        setPlayerName();</span>
+<span class="nc" id="L23">    }</span>
+
+    public List&lt;String&gt; getLabels() {
+<span class="nc" id="L26">        Integer n = this.boats.length;</span>
+<span class="nc" id="L27">        String[] labels = new String[n];</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">        for (Integer i = 0; i &lt; n; i++) {</span>
+<span class="nc" id="L29">            labels[i] = this.boats[i].name;</span>
+        }
+<span class="nc" id="L31">        return Arrays.asList(labels);</span>
+    }
+
+    public BateauMilitaire getBoatByLabel(String nomBateau) {
+<span class="nc" id="L35">        Integer i = 0;</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">        while (i &lt; this.boats.length) {</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">            if (this.boats[i].name.equals(nomBateau)) {</span>
+<span class="nc" id="L38">                return this.boats[i];</span>
+            }
+<span class="nc" id="L40">            i ++;</span>
+        }
+<span class="nc" id="L42">        return this.boats[i];</span>
+    }
+
+    /**
+     * Asks the player to place his ships.
+     * A check is made to ensure that the placement of the boats respects the rules of the game.
+     * 
+     * @return void
+     */
+    protected void placeBoats() {
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        for (Integer i = 0; i &lt; this.boats.length; i++) {</span>
+<span class="nc" id="L53">            Boolean error = true;</span>
+<span class="nc" id="L54">            String input = &quot;&quot;;</span>
+            // ConsoleHelper.eraseConsole();
+            // System.out.println(&quot;╔══════════════════════════════════════════════════════════════════════════════╗&quot;);
+            // System.out.println(&quot;║                            Placement des bateaux                             ║&quot;);
+            // System.out.println(&quot;╚══════════════════════════════════════════════════════════════════════════════╝&quot;);
+            // System.out.println();
+            // System.out.println(pseudo + &quot;, vous devez placer vos navires sur la grille de jeu.&quot;);
+            // System.out.println(&quot;Vous devez pour cela indiquer l'orientation de votre bateau ainsi que son point d'application.&quot;);
+            // System.out.println(&quot;Si vous indiquez \&quot;&quot; + TextHelper.ANSI_GREEN + &quot;V&quot; + TextHelper.ANSI_RESET + &quot;&quot;+ TextHelper.ANSI_PURPLE + &quot;C6&quot; + TextHelper.ANSI_RESET+ &quot;\&quot; pour un bateau de 3 cases, le bateau sera orienté &quot; + TextHelper.ANSI_GREEN + &quot;verticalement&quot;+ TextHelper.ANSI_RESET + &quot;, débutera en &quot; + TextHelper.ANSI_PURPLE + &quot;C6&quot; + TextHelper.ANSI_RESET+ &quot; et se terminera en F6.&quot;);
+            // System.out.println(&quot;Si vous indiquez \&quot;&quot; + TextHelper.ANSI_GREEN + &quot;H&quot; + TextHelper.ANSI_RESET + &quot;&quot;+ TextHelper.ANSI_PURPLE + &quot;I3&quot; + TextHelper.ANSI_RESET+ &quot;\&quot; pour un bateau de 3 cases, le bateau sera orienté &quot; + TextHelper.ANSI_GREEN+ &quot;horizontalement&quot; + TextHelper.ANSI_RESET + &quot;, débutera en &quot; + TextHelper.ANSI_PURPLE + &quot;I3&quot;+ TextHelper.ANSI_RESET + &quot; et se terminera en I6.&quot;);
+            // System.out.println(&quot;Faites attention à ne pas sortir du plateau de jeu, à ne pas faire chevaucher deux bateaux et à ne pas coller deux bateaux ensembles, auquel cas vous devrez recommencer le placement de votre bateau.&quot;);
+            // System.out.println(&quot;Soyez stratégique ! Préparez-vous, la bataille va bientôt commencer ;)&quot;);
+            // System.out.println();
+            // System.out.println(&quot;════════════════════════════════════════════════════════════════════════════════&quot;);
+            // System.out.println();
+<span class="nc" id="L69">            Integer boatSize = this.boats[i].taille;</span>
+            // plateau.showPersonnalBoard();
+<span class="nc" id="L71">            System.out.println(pseudo + &quot;, vous devez placer votre &quot; + this.boats[i].name + &quot; (&quot; + boatSize + &quot; cases).&quot;);</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">            while (error) {</span>
+<span class="nc" id="L73">                System.out.print(&quot;Veuillez choisir une direction et un point d'application (ex : VC6) : &quot;);</span>
+                try {
+<span class="nc" id="L75">                    input = in.readLine();</span>
+<span class="nc" id="L76">                } catch (java.io.IOException e) {</span>
+<span class="nc" id="L77">                    System.out.println(&quot;Une erreur est survenue : &quot; + e);</span>
+<span class="nc" id="L78">                }</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">                if (Pattern.matches(&quot;^[HVhv][abcdefghijABCDEFGHIJ][1-9][0]{0,1}&quot;, input)) {</span>
+<span class="nc" id="L80">                    String direction = input.substring(0, 1).toUpperCase();</span>
+<span class="nc" id="L81">                    Integer x = Integer.valueOf(input.substring(2)) - 1;</span>
+<span class="nc" id="L82">                    Integer y = Integer.valueOf(CoordinateHelper.letterCoordinateToNumber(input.substring(1, 2).toUpperCase()));</span>
+<span class="nc" id="L83">                    System.out.println();</span>
+<span class="nc bnc" id="L84" title="All 4 branches missed.">                    if (x &lt; 0 || x &gt; 9) {</span>
+<span class="nc" id="L85">                        System.out.println(&quot;La composante X de votre bateau est invalide.&quot;);</span>
+<span class="nc bnc" id="L86" title="All 4 branches missed.">                    } else if (y &lt; 0 || y &gt; 9) {</span>
+<span class="nc" id="L87">                        System.out.println(&quot;La composante Y de votre bateau est invalide.&quot;);</span>
+                    } 
+                    //TODO: Gestion des collisions
+                    else {
+<span class="nc" id="L91">                        error = false;</span>
+<span class="nc" id="L92">                        initCases(this.boats[i], direction, x, y);</span>
+                    }
+<span class="nc" id="L94">                }</span>
+            }
+        }
+<span class="nc" id="L97">        placerBombeAléatoirement();</span>
+<span class="nc" id="L98">        System.out.println(&quot;Placement terminé&quot;);</span>
+<span class="nc" id="L99">    }</span>
+
+    private void placerBombeAléatoirement() {
+<span class="nc" id="L102">        Random random = new Random();</span>
+        Integer ligne, colonne;
+<span class="nc" id="L104">        Bombe bombe = new Bombe();</span>
+
+<span class="nc" id="L106">        ligne = random.nextInt(this.plateau.getTaille());</span>
+<span class="nc" id="L107">        colonne = random.nextInt(this.plateau.getTaille());</span>
+
+        // Placer la bombe
+<span class="nc" id="L110">        plateau.grille[ligne][colonne].rejoindreCase(bombe, bombe.resistance);</span>
+<span class="nc" id="L111">        System.out.println(&quot;Bombe placée à la position : (&quot; + ligne + &quot;, &quot; + colonne + &quot;)&quot;);</span>
+<span class="nc" id="L112">    }</span>
+
+    private void initCases(Bateau bateau, String direction, Integer x, Integer y) {
+<span class="nc" id="L115">        System.out.println(direction);</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">        if (direction.equals(&quot;H&quot;)) {</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">            for (Integer i = 0; i &lt; bateau.taille; i++) {</span>
+<span class="nc" id="L118">                this.plateau.grille[x][y+i].rejoindreCase(bateau, bateau.taille);</span>
+            }
+        } else {
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            for (Integer i = 0; i &lt; bateau.taille; i++) {</span>
+<span class="nc" id="L122">                this.plateau.grille[x+i][y].rejoindreCase(bateau, bateau.taille);</span>
+            }
+        }
+<span class="nc" id="L125">    }</span>
+
+    /**
+     * Asks the player to choose his pseudo
+     * 
+     * @return void
+     */
+    protected void setPlayerName() {
+<span class="nc" id="L133">        String input = &quot;&quot;;</span>
+<span class="nc" id="L134">        boolean error = true;</span>
+        do {
+<span class="nc" id="L136">            System.out.print(&quot;Comment souhaitez-vous que l'on vous appelle (3-12 caractères) ? &quot;);</span>
+            try {
+<span class="nc" id="L138">                input = in.readLine().replaceAll(&quot;\\s&quot;, &quot;-&quot;);</span>
+<span class="nc" id="L139">            } catch (java.io.IOException e) {</span>
+<span class="nc" id="L140">                System.out.println(&quot;Une erreur est survenue : &quot; + e);</span>
+<span class="nc" id="L141">            }</span>
+<span class="nc bnc" id="L142" title="All 6 branches missed.">            if (Pattern.matches(&quot;[A-Za-z-éèï]+&quot;, input) &amp;&amp; (input.length() &gt;= 3) &amp;&amp; (input.length() &lt;= 12)) {</span>
+<span class="nc" id="L143">                error = false;</span>
+            }
+<span class="nc bnc" id="L145" title="All 2 branches missed.">        } while (error);</span>
+<span class="nc" id="L146">        this.pseudo = input;</span>
+<span class="nc" id="L147">    }</span>
+
+
+    protected void attaquer(Joueur enemy) {
+<span class="nc" id="L151">        boolean error = true;</span>
+<span class="nc" id="L152">        Integer x = 0;</span>
+<span class="nc" id="L153">        Integer y = 0;</span>
+<span class="nc" id="L154">        String nomBateau = &quot;&quot;;</span>
+
+<span class="nc bnc" id="L156" title="All 2 branches missed.">        while (error) {</span>
+<span class="nc" id="L157">            System.out.print(this.pseudo + &quot;, quel bateau voulez-vous utiliser ? &quot;);</span>
+            try {
+<span class="nc" id="L159">                nomBateau = in.readLine();</span>
+<span class="nc" id="L160">            } catch (java.io.IOException e) {</span>
+<span class="nc" id="L161">                System.out.println(&quot;Une erreur est survenue : &quot; + e);</span>
+<span class="nc" id="L162">            }</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">            if (getLabels().contains(nomBateau)) {</span>
+<span class="nc" id="L164">                System.out.println(&quot;Vous avez choisi le &quot; + nomBateau);</span>
+<span class="nc" id="L165">                error = false;</span>
+            }
+        }
+<span class="nc" id="L168">        error = true;</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">        while (error) {</span>
+<span class="nc" id="L170">            String input = &quot;&quot;;</span>
+<span class="nc" id="L171">            System.out.print(this.pseudo + &quot;, sur quelle case souhaitez-vous tirer ? &quot;);</span>
+            try {
+<span class="nc" id="L173">                input = in.readLine();</span>
+<span class="nc" id="L174">            } catch (java.io.IOException e) {</span>
+<span class="nc" id="L175">                System.out.println(&quot;Une erreur est survenue : &quot; + e);</span>
+<span class="nc" id="L176">            }</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">            if (Pattern.matches(&quot;[A-Ja-j][1-9]{1}[0]{0,1}&quot;, input)) {</span>
+<span class="nc" id="L178">                x = Integer.valueOf(input.substring(1)) - 1;</span>
+<span class="nc" id="L179">                y = Integer.valueOf(CoordinateHelper.letterCoordinateToNumber(input.substring(0, 1).toUpperCase()));</span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">                if (CoordinateHelper.isValid(x, y)) {</span>
+<span class="nc" id="L181">                    error = false;</span>
+                } else {
+<span class="nc" id="L183">                    System.out.println(&quot;Cette coordonnée est invalide.&quot;);</span>
+                }
+            }
+<span class="nc" id="L186">        }</span>
+
+<span class="nc" id="L188">        Case cible = enemy.getPlateau().grille[x][y];</span>
+
+        try {
+<span class="nc" id="L191">            getBoatByLabel(nomBateau).attaque(cible);</span>
+<span class="nc" id="L192">        } catch (MortPersonnageException e) {</span>
+            // TODO Auto-generated catch block
+<span class="nc" id="L194">            e.printStackTrace();</span>
+<span class="nc" id="L195">        }</span>
+<span class="nc" id="L196">        }</span>
+
+    @Override
+    protected void choisirAction() {
+<span class="nc" id="L200">        System.out.println(this.pseudo + &quot;, que voulez vous faire entre (1)Attaquer et (2)Déplacer un bateau ?&quot;);</span>
+<span class="nc" id="L201">    }</span>
+    }
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
