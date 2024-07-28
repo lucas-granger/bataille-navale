@@ -44,13 +44,26 @@ public abstract class ElementJeu implements ISuperposable, IAttaquable {
 
     // Méthode pour ajouter une case à l'élément
     public void ajouterCase(Case nouvelleCase) {
-        cases.add(nouvelleCase);
+        this.cases.add(nouvelleCase);
+    }
+    
+    public void supprimerCase(Case ancienneCase) {
+        this.cases.remove(ancienneCase);
     }
 
     @Override
     public boolean peutEtreSuperposeAvec(ISuperposable autre) {
         // Par défaut, un élément ne peut pas être superposé avec un autre
         return false;
+    }
+
+    public boolean estCoule() {
+        for (Case cell : cases) {
+            if (cell.pointsDeVieParElement.get(this) > 0) {
+                return false; // The boat is not sunk if any case still has life
+            }
+        }
+        return true; // All cases are at 0 or below
     }
 
     // /**

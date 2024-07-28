@@ -44,13 +44,28 @@ public abstract class ElementJeu implements ISuperposable, IAttaquable {
 
     // Méthode pour ajouter une case à l'élément
     public void ajouterCase(Case nouvelleCase) {
-<span class="nc" id="L47">        cases.add(nouvelleCase);</span>
+<span class="nc" id="L47">        this.cases.add(nouvelleCase);</span>
 <span class="nc" id="L48">    }</span>
+    
+    public void supprimerCase(Case ancienneCase) {
+<span class="nc" id="L51">        this.cases.remove(ancienneCase);</span>
+<span class="nc" id="L52">    }</span>
 
     @Override
     public boolean peutEtreSuperposeAvec(ISuperposable autre) {
         // Par défaut, un élément ne peut pas être superposé avec un autre
-<span class="nc" id="L53">        return false;</span>
+<span class="nc" id="L57">        return false;</span>
+    }
+
+    public boolean estCoule() {
+<span class="nc bnc" id="L61" title="All 2 branches missed.">        for (Case cell : cases) {</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            if (cell.pointsDeVieParElement.get(this) &gt; 0) {</span>
+<span class="nc" id="L63">                System.out.println(&quot;Bateau good&quot;);</span>
+<span class="nc" id="L64">                return false; // The boat is not sunk if any case still has life</span>
+            }
+<span class="nc" id="L66">        }</span>
+<span class="nc" id="L67">        System.out.println(&quot;Bateau coule&quot;);</span>
+<span class="nc" id="L68">        return true; // All cases are at 0 or below</span>
     }
 
     // /**
@@ -66,12 +81,12 @@ public abstract class ElementJeu implements ISuperposable, IAttaquable {
      */
     @Override
     public boolean equals(Object obj) {
-<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (obj == null)</span>
-<span class="nc" id="L70">            return false;</span>
-<span class="nc bnc" id="L71" title="All 2 branches missed.">        if (getClass() != obj.getClass())</span>
-<span class="nc" id="L72">            return false;</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        if (obj == null)</span>
+<span class="nc" id="L85">            return false;</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">        if (getClass() != obj.getClass())</span>
+<span class="nc" id="L87">            return false;</span>
         //ElementJeu other = (ElementJeu) obj;
-<span class="nc" id="L74">        return true;</span>
+<span class="nc" id="L89">        return true;</span>
     }
 
     // /**

@@ -112,7 +112,6 @@ public class JoueurHumain extends Joueur {
     }
 
     private void initCases(Bateau bateau, String direction, Integer x, Integer y) {
-        System.out.println(direction);
         if (direction.equals("H")) {
             for (Integer i = 0; i < bateau.taille; i++) {
                 this.plateau.grille[x][y+i].rejoindreCase(bateau, bateau.taille);

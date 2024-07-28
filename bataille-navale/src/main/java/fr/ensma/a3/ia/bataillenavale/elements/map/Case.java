@@ -6,6 +6,7 @@ import java.util.Set;
 
 import fr.ensma.a3.ia.bataillenavale.elements.ElementJeu;
 import fr.ensma.a3.ia.bataillenavale.elements.comportement.attaques.IAttaquable;
+import fr.ensma.a3.ia.bataillenavale.outils.MortPersonnageException;
 
 
 public class Case implements ICase, IAttaquable{
@@ -34,20 +35,28 @@ public class Case implements ICase, IAttaquable{
     @Override
     public void rejoindreCase(ElementJeu obs, Integer pointsDeVie) {
         this.pointsDeVieParElement.put(obs, pointsDeVie);
+        obs.ajouterCase(this);
     }
 
     @Override
     public void quitterCase(ElementJeu obs) {
         this.pointsDeVieParElement.remove(obs);
+        obs.supprimerCase(this);
+
     }
 
     @Override
-    public void estAttaque(Integer puissAtk) {
+    public void estAttaque(Integer puissAtk) throws MortPersonnageException {
         Set<ElementJeu> elements = this.pointsDeVieParElement.keySet();
         for (ElementJeu element : elements) {
             Integer pointsDeVieActuels = this.pointsDeVieParElement.get(element);
             this.pointsDeVieParElement.put(element, pointsDeVieActuels - puissAtk);
             System.out.println(element + " : Oh non ma vie!!!" + pointsDeVieActuels + "-->" + this.pointsDeVieParElement.get(element));
+            System.out.println(element.estCoule());
+            if (element.estCoule()) {
+                System.out.println(element + " : Argh je meurs...");
+                throw new MortPersonnageException(element);
+            }
         }
     }
     public void stringify() {

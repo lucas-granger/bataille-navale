@@ -1,12 +1,12 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-bataille-navale,fr.ensma.a3.ia.bataillenavale.elements.map,Case,95,0,2,0,21,0,9,0,8,0
+bataille-navale,fr.ensma.a3.ia.bataillenavale.elements.map,Case,116,0,4,0,27,0,10,0,8,0
 bataille-navale,fr.ensma.a3.ia.bataillenavale.elements.map,Plateau,210,0,16,0,36,0,13,0,5,0
 bataille-navale,fr.ensma.a3.ia.bataillenavale.outils,MortPersonnageException,9,0,0,0,4,0,2,0,2,0
 bataille-navale,fr.ensma.a3.ia.bataillenavale.outils,Config,51,0,4,0,6,0,6,0,4,0
 bataille-navale,fr.ensma.a3.ia.bataillenavale.outils,ValParamException,25,0,0,0,7,0,3,0,3,0
 bataille-navale,fr.ensma.a3.ia.bataillenavale.outils,AutomateTransitionException,22,0,0,0,5,0,3,0,3,0
 bataille-navale,fr.ensma.a3.ia.bataillenavale.outils,CoordinateHelper,25,0,8,0,3,0,7,0,3,0
-bataille-navale,fr.ensma.a3.ia.bataillenavale,JoueurHumain,573,0,44,0,102,0,31,0,9,0
+bataille-navale,fr.ensma.a3.ia.bataillenavale,JoueurHumain,570,0,44,0,101,0,31,0,9,0
 bataille-navale,fr.ensma.a3.ia.bataillenavale,Jeu,31,0,2,0,9,0,2,0,1,0
 bataille-navale,fr.ensma.a3.ia.bataillenavale,App,30,0,0,0,8,0,2,0,2,0
 bataille-navale,fr.ensma.a3.ia.bataillenavale,Joueur,184,0,0,0,25,0,9,0,9,0
@@ -23,4 +23,4 @@ bataille-navale,fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires,Contre
 bataille-navale,fr.ensma.a3.ia.bataillenavale.elements.objets,Bombe,6,0,0,0,3,0,2,0,2,0
 bataille-navale,fr.ensma.a3.ia.bataillenavale.elements.comportement.attaques,Classique,7,0,0,0,3,0,2,0,2,0
 bataille-navale,fr.ensma.a3.ia.bataillenavale.elements.comportement.attaques,EnCroix,11,0,0,0,3,0,2,0,2,0
-bataille-navale,fr.ensma.a3.ia.bataillenavale.elements,ElementJeu,64,0,8,0,20,0,11,0,7,0
+bataille-navale,fr.ensma.a3.ia.bataillenavale.elements,ElementJeu,99,0,12,0,29,0,15,0,9,0

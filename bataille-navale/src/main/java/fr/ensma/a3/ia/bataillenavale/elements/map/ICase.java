@@ -1,6 +1,7 @@
 package fr.ensma.a3.ia.bataillenavale.elements.map;
 
 import fr.ensma.a3.ia.bataillenavale.elements.ElementJeu;
+import fr.ensma.a3.ia.bataillenavale.outils.MortPersonnageException;
 
 /**
  * Typage pour Observable
@@ -26,5 +27,5 @@ public interface ICase {
     /**
      * Provoque le déplacement de la case
      */
-    void estAttaque(Integer puissAtk);
+    void estAttaque(Integer puissAtk) throws MortPersonnageException;
 }
