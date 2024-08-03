@@ -6,6 +6,7 @@ C:\Users\lulug\OneDrive\Documents\Workspace-perso\bataille-navale\bataille-naval
 C:\Users\lulug\OneDrive\Documents\Workspace-perso\bataille-navale\bataille-navale\src\main\java\fr\ensma\a3\ia\bataillenavale\elements\map\Case.java
 C:\Users\lulug\OneDrive\Documents\Workspace-perso\bataille-navale\bataille-navale\src\main\java\fr\ensma\a3\ia\bataillenavale\Joueur.java
 C:\Users\lulug\OneDrive\Documents\Workspace-perso\bataille-navale\bataille-navale\src\main\java\fr\ensma\a3\ia\bataillenavale\elements\comportement\deplacements\EnPivotant.java
+C:\Users\lulug\OneDrive\Documents\Workspace-perso\bataille-navale\bataille-navale\src\main\java\fr\ensma\a3\ia\bataillenavale\elements\comportement\attaques\Explosion.java
 C:\Users\lulug\OneDrive\Documents\Workspace-perso\bataille-navale\bataille-navale\src\main\java\fr\ensma\a3\ia\bataillenavale\elements\bateaux\militaires\ContreTorpilleur.java
 C:\Users\lulug\OneDrive\Documents\Workspace-perso\bataille-navale\bataille-navale\src\main\java\fr\ensma\a3\ia\bataillenavale\elements\comportement\attaques\Classique.java
 C:\Users\lulug\OneDrive\Documents\Workspace-perso\bataille-navale\bataille-navale\src\main\java\fr\ensma\a3\ia\bataillenavale\elements\comportement\attaques\EnCroix.java

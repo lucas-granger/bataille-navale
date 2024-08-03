@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Config.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bataille-navale</a> &gt; <a href="index.source.html" class="el_package">fr.ensma.a3.ia.bataillenavale.outils</a> &gt; <span class="el_source">Config.java</span></div><h1>Config.java</h1><pre class="source lang-java linenums">package fr.ensma.a3.ia.bataillenavale.outils;
 
-import java.util.ArrayList;
-
-import fr.ensma.a3.ia.bataillenavale.elements.bateaux.Bateau;
 import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.BateauMilitaire;
 import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.ContreTorpilleur;
 import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.Croiseur;
@@ -12,13 +9,13 @@ import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.Torpilleur;
 /**
  * Config : game configuration file
  */
-<span class="nc" id="L15">public abstract class Config {</span>
+<span class="nc" id="L12">public abstract class Config {</span>
 
     /**
      * The boats and their configuration
      * {:id, :name, :size}
      */
-<span class="nc" id="L21">    private static final BateauMilitaire[] boats = {</span>
+<span class="nc" id="L18">    private static final BateauMilitaire[] boats = {</span>
         // new PorteAvion(),
         new Croiseur(),
         new ContreTorpilleur(),
@@ -34,10 +31,10 @@ import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.Torpilleur;
      * @return String[]
      */
     public static BateauMilitaire getBoatsConfig(Integer index) {
-<span class="nc bnc" id="L37" title="All 4 branches missed.">        if (index &lt; 0 || index &gt;= boats.length) {</span>
-<span class="nc" id="L38">            System.err.println(&quot;Index out of range&quot;);;</span>
+<span class="nc bnc" id="L34" title="All 4 branches missed.">        if (index &lt; 0 || index &gt;= boats.length) {</span>
+<span class="nc" id="L35">            System.err.println(&quot;Index out of range&quot;);;</span>
         }
-<span class="nc" id="L40">        return boats[index];</span>
+<span class="nc" id="L37">        return boats[index];</span>
     }
 
     /**
@@ -46,7 +43,7 @@ import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.Torpilleur;
      * @return int
      */
     public static Integer getNbBoats() {
-<span class="nc" id="L49">        return boats.length;</span>
+<span class="nc" id="L46">        return boats.length;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,6 +1,7 @@
 package fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires;
 
 import fr.ensma.a3.ia.bataillenavale.elements.comportement.attaques.IAttaquable;
+import fr.ensma.a3.ia.bataillenavale.elements.map.Case;
 import fr.ensma.a3.ia.bataillenavale.outils.MortPersonnageException;
 
 public class Croiseur extends BateauMilitaire {
@@ -11,11 +12,16 @@ public class Croiseur extends BateauMilitaire {
     }
 
     @Override
-    public void attaque(IAttaquable cible) throws MortPersonnageException {
-        System.out.println("Attaque du "+this.name);
-        cible.estAttaque(this.puissanceDAttaque);
+    public void attaque(Case cible) throws MortPersonnageException {
+        compAtt.attaquer(this, cible);
     }
 
+    @Override
+    public void attaque(IAttaquable cible) throws MortPersonnageException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'attaque'");
+    }
+    
     @Override
     public Integer getPuissAttaque() {
         return this.puissanceDAttaque;

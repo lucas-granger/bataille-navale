@@ -33,7 +33,5 @@ public abstract class Bateau extends ElementJeu {
 
     @Override
     public void estAttaque(Integer puissance) throws MortPersonnageException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'estAttaque'");
     }
 }

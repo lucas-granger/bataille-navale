@@ -1,8 +1,5 @@
 package fr.ensma.a3.ia.bataillenavale.outils;
 
-import java.util.ArrayList;
-
-import fr.ensma.a3.ia.bataillenavale.elements.bateaux.Bateau;
 import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.BateauMilitaire;
 import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.ContreTorpilleur;
 import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.Croiseur;

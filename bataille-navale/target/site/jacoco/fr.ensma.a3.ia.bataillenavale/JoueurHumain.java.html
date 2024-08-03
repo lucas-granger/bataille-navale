@@ -9,7 +9,6 @@ import fr.ensma.a3.ia.bataillenavale.elements.bateaux.Bateau;
 import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.BateauMilitaire;
 import fr.ensma.a3.ia.bataillenavale.elements.map.Case;
 import fr.ensma.a3.ia.bataillenavale.elements.objets.Bombe;
-import fr.ensma.a3.ia.bataillenavale.outils.Config;
 import fr.ensma.a3.ia.bataillenavale.outils.CoordinateHelper;
 import fr.ensma.a3.ia.bataillenavale.outils.MortPersonnageException;
 
@@ -18,28 +17,28 @@ import fr.ensma.a3.ia.bataillenavale.outils.MortPersonnageException;
  */
 public class JoueurHumain extends Joueur {
 
-<span class="nc" id="L21">    public JoueurHumain() {</span>
-<span class="nc" id="L22">        setPlayerName();</span>
-<span class="nc" id="L23">    }</span>
+<span class="nc" id="L20">    public JoueurHumain() {</span>
+<span class="nc" id="L21">        setPlayerName();</span>
+<span class="nc" id="L22">    }</span>
 
     public List&lt;String&gt; getLabels() {
-<span class="nc" id="L26">        Integer n = this.boats.length;</span>
-<span class="nc" id="L27">        String[] labels = new String[n];</span>
-<span class="nc bnc" id="L28" title="All 2 branches missed.">        for (Integer i = 0; i &lt; n; i++) {</span>
-<span class="nc" id="L29">            labels[i] = this.boats[i].name;</span>
+<span class="nc" id="L25">        Integer n = this.boats.length;</span>
+<span class="nc" id="L26">        String[] labels = new String[n];</span>
+<span class="nc bnc" id="L27" title="All 2 branches missed.">        for (Integer i = 0; i &lt; n; i++) {</span>
+<span class="nc" id="L28">            labels[i] = this.boats[i].name;</span>
         }
-<span class="nc" id="L31">        return Arrays.asList(labels);</span>
+<span class="nc" id="L30">        return Arrays.asList(labels);</span>
     }
 
     public BateauMilitaire getBoatByLabel(String nomBateau) {
-<span class="nc" id="L35">        Integer i = 0;</span>
-<span class="nc bnc" id="L36" title="All 2 branches missed.">        while (i &lt; this.boats.length) {</span>
-<span class="nc bnc" id="L37" title="All 2 branches missed.">            if (this.boats[i].name.equals(nomBateau)) {</span>
-<span class="nc" id="L38">                return this.boats[i];</span>
+<span class="nc" id="L34">        Integer i = 0;</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        while (i &lt; this.boats.length) {</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">            if (this.boats[i].name.equals(nomBateau)) {</span>
+<span class="nc" id="L37">                return this.boats[i];</span>
             }
-<span class="nc" id="L40">            i ++;</span>
+<span class="nc" id="L39">            i ++;</span>
         }
-<span class="nc" id="L42">        return this.boats[i];</span>
+<span class="nc" id="L41">        return this.boats[i];</span>
     }
 
     /**
@@ -49,9 +48,9 @@ public class JoueurHumain extends Joueur {
      * @return void
      */
     protected void placeBoats() {
-<span class="nc bnc" id="L52" title="All 2 branches missed.">        for (Integer i = 0; i &lt; this.boats.length; i++) {</span>
-<span class="nc" id="L53">            Boolean error = true;</span>
-<span class="nc" id="L54">            String input = &quot;&quot;;</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">        for (Integer i = 0; i &lt; this.boats.length; i++) {</span>
+<span class="nc" id="L52">            Boolean error = true;</span>
+<span class="nc" id="L53">            String input = &quot;&quot;;</span>
             // ConsoleHelper.eraseConsole();
             // System.out.println(&quot;╔══════════════════════════════════════════════════════════════════════════════╗&quot;);
             // System.out.println(&quot;║                            Placement des bateaux                             ║&quot;);
@@ -66,62 +65,62 @@ public class JoueurHumain extends Joueur {
             // System.out.println();
             // System.out.println(&quot;════════════════════════════════════════════════════════════════════════════════&quot;);
             // System.out.println();
-<span class="nc" id="L69">            Integer boatSize = this.boats[i].taille;</span>
+<span class="nc" id="L68">            Integer boatSize = this.boats[i].taille;</span>
             // plateau.showPersonnalBoard();
-<span class="nc" id="L71">            System.out.println(pseudo + &quot;, vous devez placer votre &quot; + this.boats[i].name + &quot; (&quot; + boatSize + &quot; cases).&quot;);</span>
-<span class="nc bnc" id="L72" title="All 2 branches missed.">            while (error) {</span>
-<span class="nc" id="L73">                System.out.print(&quot;Veuillez choisir une direction et un point d'application (ex : VC6) : &quot;);</span>
+<span class="nc" id="L70">            System.out.println(pseudo + &quot;, vous devez placer votre &quot; + this.boats[i].name + &quot; (&quot; + boatSize + &quot; cases).&quot;);</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            while (error) {</span>
+<span class="nc" id="L72">                System.out.print(&quot;Veuillez choisir une direction et un point d'application (ex : VC6) : &quot;);</span>
                 try {
-<span class="nc" id="L75">                    input = in.readLine();</span>
-<span class="nc" id="L76">                } catch (java.io.IOException e) {</span>
-<span class="nc" id="L77">                    System.out.println(&quot;Une erreur est survenue : &quot; + e);</span>
-<span class="nc" id="L78">                }</span>
-<span class="nc bnc" id="L79" title="All 2 branches missed.">                if (Pattern.matches(&quot;^[HVhv][abcdefghijABCDEFGHIJ][1-9][0]{0,1}&quot;, input)) {</span>
-<span class="nc" id="L80">                    String direction = input.substring(0, 1).toUpperCase();</span>
-<span class="nc" id="L81">                    Integer x = Integer.valueOf(input.substring(2)) - 1;</span>
-<span class="nc" id="L82">                    Integer y = Integer.valueOf(CoordinateHelper.letterCoordinateToNumber(input.substring(1, 2).toUpperCase()));</span>
-<span class="nc" id="L83">                    System.out.println();</span>
-<span class="nc bnc" id="L84" title="All 4 branches missed.">                    if (x &lt; 0 || x &gt; 9) {</span>
-<span class="nc" id="L85">                        System.out.println(&quot;La composante X de votre bateau est invalide.&quot;);</span>
-<span class="nc bnc" id="L86" title="All 4 branches missed.">                    } else if (y &lt; 0 || y &gt; 9) {</span>
-<span class="nc" id="L87">                        System.out.println(&quot;La composante Y de votre bateau est invalide.&quot;);</span>
+<span class="nc" id="L74">                    input = in.readLine();</span>
+<span class="nc" id="L75">                } catch (java.io.IOException e) {</span>
+<span class="nc" id="L76">                    System.out.println(&quot;Une erreur est survenue : &quot; + e);</span>
+<span class="nc" id="L77">                }</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">                if (Pattern.matches(&quot;^[HVhv][abcdefghijABCDEFGHIJ][1-9][0]{0,1}&quot;, input)) {</span>
+<span class="nc" id="L79">                    String direction = input.substring(0, 1).toUpperCase();</span>
+<span class="nc" id="L80">                    Integer x = Integer.valueOf(input.substring(2)) - 1;</span>
+<span class="nc" id="L81">                    Integer y = Integer.valueOf(CoordinateHelper.letterCoordinateToNumber(input.substring(1, 2).toUpperCase()));</span>
+<span class="nc" id="L82">                    System.out.println();</span>
+<span class="nc bnc" id="L83" title="All 4 branches missed.">                    if (x &lt; 0 || x &gt; 9) {</span>
+<span class="nc" id="L84">                        System.out.println(&quot;La composante X de votre bateau est invalide.&quot;);</span>
+<span class="nc bnc" id="L85" title="All 4 branches missed.">                    } else if (y &lt; 0 || y &gt; 9) {</span>
+<span class="nc" id="L86">                        System.out.println(&quot;La composante Y de votre bateau est invalide.&quot;);</span>
                     } 
                     //TODO: Gestion des collisions
                     else {
-<span class="nc" id="L91">                        error = false;</span>
-<span class="nc" id="L92">                        initCases(this.boats[i], direction, x, y);</span>
+<span class="nc" id="L90">                        error = false;</span>
+<span class="nc" id="L91">                        initCases(this.boats[i], direction, x, y);</span>
                     }
-<span class="nc" id="L94">                }</span>
+<span class="nc" id="L93">                }</span>
             }
         }
-<span class="nc" id="L97">        placerBombeAléatoirement();</span>
-<span class="nc" id="L98">        System.out.println(&quot;Placement terminé&quot;);</span>
-<span class="nc" id="L99">    }</span>
+<span class="nc" id="L96">        placerBombeAléatoirement();</span>
+<span class="nc" id="L97">        System.out.println(&quot;Placement terminé&quot;);</span>
+<span class="nc" id="L98">    }</span>
 
     private void placerBombeAléatoirement() {
-<span class="nc" id="L102">        Random random = new Random();</span>
+<span class="nc" id="L101">        Random random = new Random();</span>
         Integer ligne, colonne;
-<span class="nc" id="L104">        Bombe bombe = new Bombe();</span>
+<span class="nc" id="L103">        Bombe bombe = new Bombe();</span>
 
-<span class="nc" id="L106">        ligne = random.nextInt(this.plateau.getTaille());</span>
-<span class="nc" id="L107">        colonne = random.nextInt(this.plateau.getTaille());</span>
+<span class="nc" id="L105">        ligne = random.nextInt(this.plateau.getTaille());</span>
+<span class="nc" id="L106">        colonne = random.nextInt(this.plateau.getTaille());</span>
 
         // Placer la bombe
-<span class="nc" id="L110">        plateau.grille[ligne][colonne].rejoindreCase(bombe, bombe.resistance);</span>
-<span class="nc" id="L111">        System.out.println(&quot;Bombe placée à la position : (&quot; + ligne + &quot;, &quot; + colonne + &quot;)&quot;);</span>
-<span class="nc" id="L112">    }</span>
+<span class="nc" id="L109">        plateau.grille[ligne][colonne].rejoindreCase(bombe, bombe.resistance);</span>
+<span class="nc" id="L110">        System.out.println(&quot;Bombe placée à la position : (&quot; + ligne + &quot;, &quot; + colonne + &quot;)&quot;);</span>
+<span class="nc" id="L111">    }</span>
 
     private void initCases(Bateau bateau, String direction, Integer x, Integer y) {
-<span class="nc bnc" id="L115" title="All 2 branches missed.">        if (direction.equals(&quot;H&quot;)) {</span>
-<span class="nc bnc" id="L116" title="All 2 branches missed.">            for (Integer i = 0; i &lt; bateau.taille; i++) {</span>
-<span class="nc" id="L117">                this.plateau.grille[x][y+i].rejoindreCase(bateau, bateau.taille);</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">        if (direction.equals(&quot;H&quot;)) {</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            for (Integer i = 0; i &lt; bateau.taille; i++) {</span>
+<span class="nc" id="L116">                this.plateau.grille[x][y+i].rejoindreCase(bateau, bateau.taille);</span>
             }
         } else {
-<span class="nc bnc" id="L120" title="All 2 branches missed.">            for (Integer i = 0; i &lt; bateau.taille; i++) {</span>
-<span class="nc" id="L121">                this.plateau.grille[x+i][y].rejoindreCase(bateau, bateau.taille);</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">            for (Integer i = 0; i &lt; bateau.taille; i++) {</span>
+<span class="nc" id="L120">                this.plateau.grille[x+i][y].rejoindreCase(bateau, bateau.taille);</span>
             }
         }
-<span class="nc" id="L124">    }</span>
+<span class="nc" id="L123">    }</span>
 
     /**
      * Asks the player to choose his pseudo
@@ -129,74 +128,73 @@ public class JoueurHumain extends Joueur {
      * @return void
      */
     protected void setPlayerName() {
-<span class="nc" id="L132">        String input = &quot;&quot;;</span>
-<span class="nc" id="L133">        boolean error = true;</span>
+<span class="nc" id="L131">        String input = &quot;&quot;;</span>
+<span class="nc" id="L132">        boolean error = true;</span>
         do {
-<span class="nc" id="L135">            System.out.print(&quot;Comment souhaitez-vous que l'on vous appelle (3-12 caractères) ? &quot;);</span>
+<span class="nc" id="L134">            System.out.print(&quot;Comment souhaitez-vous que l'on vous appelle (3-12 caractères) ? &quot;);</span>
             try {
-<span class="nc" id="L137">                input = in.readLine().replaceAll(&quot;\\s&quot;, &quot;-&quot;);</span>
-<span class="nc" id="L138">            } catch (java.io.IOException e) {</span>
-<span class="nc" id="L139">                System.out.println(&quot;Une erreur est survenue : &quot; + e);</span>
-<span class="nc" id="L140">            }</span>
-<span class="nc bnc" id="L141" title="All 6 branches missed.">            if (Pattern.matches(&quot;[A-Za-z-éèï]+&quot;, input) &amp;&amp; (input.length() &gt;= 3) &amp;&amp; (input.length() &lt;= 12)) {</span>
-<span class="nc" id="L142">                error = false;</span>
+<span class="nc" id="L136">                input = in.readLine().replaceAll(&quot;\\s&quot;, &quot;-&quot;);</span>
+<span class="nc" id="L137">            } catch (java.io.IOException e) {</span>
+<span class="nc" id="L138">                System.out.println(&quot;Une erreur est survenue : &quot; + e);</span>
+<span class="nc" id="L139">            }</span>
+<span class="nc bnc" id="L140" title="All 6 branches missed.">            if (Pattern.matches(&quot;[A-Za-z-éèï]+&quot;, input) &amp;&amp; (input.length() &gt;= 3) &amp;&amp; (input.length() &lt;= 12)) {</span>
+<span class="nc" id="L141">                error = false;</span>
             }
-<span class="nc bnc" id="L144" title="All 2 branches missed.">        } while (error);</span>
-<span class="nc" id="L145">        this.pseudo = input;</span>
-<span class="nc" id="L146">    }</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">        } while (error);</span>
+<span class="nc" id="L144">        this.pseudo = input;</span>
+<span class="nc" id="L145">    }</span>
 
 
     protected void attaquer(Joueur enemy) {
-<span class="nc" id="L150">        boolean error = true;</span>
-<span class="nc" id="L151">        Integer x = 0;</span>
-<span class="nc" id="L152">        Integer y = 0;</span>
-<span class="nc" id="L153">        String nomBateau = &quot;&quot;;</span>
+<span class="nc" id="L149">        boolean error = true;</span>
+<span class="nc" id="L150">        Integer x = 0;</span>
+<span class="nc" id="L151">        Integer y = 0;</span>
+<span class="nc" id="L152">        String nomBateau = &quot;&quot;;</span>
 
-<span class="nc bnc" id="L155" title="All 2 branches missed.">        while (error) {</span>
-<span class="nc" id="L156">            System.out.print(this.pseudo + &quot;, quel bateau voulez-vous utiliser ? &quot;);</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">        while (error) {</span>
+<span class="nc" id="L155">            System.out.print(this.pseudo + &quot;, quel bateau voulez-vous utiliser ? &quot;);</span>
             try {
-<span class="nc" id="L158">                nomBateau = in.readLine();</span>
-<span class="nc" id="L159">            } catch (java.io.IOException e) {</span>
-<span class="nc" id="L160">                System.out.println(&quot;Une erreur est survenue : &quot; + e);</span>
-<span class="nc" id="L161">            }</span>
-<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (getLabels().contains(nomBateau)) {</span>
-<span class="nc" id="L163">                System.out.println(&quot;Vous avez choisi le &quot; + nomBateau);</span>
-<span class="nc" id="L164">                error = false;</span>
+<span class="nc" id="L157">                nomBateau = in.readLine();</span>
+<span class="nc" id="L158">            } catch (java.io.IOException e) {</span>
+<span class="nc" id="L159">                System.out.println(&quot;Une erreur est survenue : &quot; + e);</span>
+<span class="nc" id="L160">            }</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">            if (getLabels().contains(nomBateau)) {</span>
+<span class="nc" id="L162">                System.out.println(&quot;Vous avez choisi le &quot; + nomBateau);</span>
+<span class="nc" id="L163">                error = false;</span>
             }
         }
-<span class="nc" id="L167">        error = true;</span>
-<span class="nc bnc" id="L168" title="All 2 branches missed.">        while (error) {</span>
-<span class="nc" id="L169">            String input = &quot;&quot;;</span>
-<span class="nc" id="L170">            System.out.print(this.pseudo + &quot;, sur quelle case souhaitez-vous tirer ? &quot;);</span>
+<span class="nc" id="L166">        error = true;</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">        while (error) {</span>
+<span class="nc" id="L168">            String input = &quot;&quot;;</span>
+<span class="nc" id="L169">            System.out.print(this.pseudo + &quot;, sur quelle case souhaitez-vous tirer ? &quot;);</span>
             try {
-<span class="nc" id="L172">                input = in.readLine();</span>
-<span class="nc" id="L173">            } catch (java.io.IOException e) {</span>
-<span class="nc" id="L174">                System.out.println(&quot;Une erreur est survenue : &quot; + e);</span>
-<span class="nc" id="L175">            }</span>
-<span class="nc bnc" id="L176" title="All 2 branches missed.">            if (Pattern.matches(&quot;[A-Ja-j][1-9]{1}[0]{0,1}&quot;, input)) {</span>
-<span class="nc" id="L177">                x = Integer.valueOf(input.substring(1)) - 1;</span>
-<span class="nc" id="L178">                y = Integer.valueOf(CoordinateHelper.letterCoordinateToNumber(input.substring(0, 1).toUpperCase()));</span>
-<span class="nc bnc" id="L179" title="All 2 branches missed.">                if (CoordinateHelper.isValid(x, y)) {</span>
-<span class="nc" id="L180">                    error = false;</span>
+<span class="nc" id="L171">                input = in.readLine();</span>
+<span class="nc" id="L172">            } catch (java.io.IOException e) {</span>
+<span class="nc" id="L173">                System.out.println(&quot;Une erreur est survenue : &quot; + e);</span>
+<span class="nc" id="L174">            }</span>
+<span class="nc bnc" id="L175" title="All 2 branches missed.">            if (Pattern.matches(&quot;[A-Ja-j][1-9]{1}[0]{0,1}&quot;, input)) {</span>
+<span class="nc" id="L176">                x = Integer.valueOf(input.substring(1)) - 1;</span>
+<span class="nc" id="L177">                y = Integer.valueOf(CoordinateHelper.letterCoordinateToNumber(input.substring(0, 1).toUpperCase()));</span>
+<span class="nc bnc" id="L178" title="All 2 branches missed.">                if (CoordinateHelper.isValid(x, y)) {</span>
+<span class="nc" id="L179">                    error = false;</span>
                 } else {
-<span class="nc" id="L182">                    System.out.println(&quot;Cette coordonnée est invalide.&quot;);</span>
+<span class="nc" id="L181">                    System.out.println(&quot;Cette coordonnée est invalide.&quot;);</span>
                 }
             }
-<span class="nc" id="L185">        }</span>
+<span class="nc" id="L184">        }</span>
 
-<span class="nc" id="L187">        Case cible = enemy.getPlateau().grille[x][y];</span>
+<span class="nc" id="L186">        Case cible = enemy.getPlateau().grille[x][y];</span>
 
         try {
-<span class="nc" id="L190">            getBoatByLabel(nomBateau).attaque(cible);</span>
-<span class="nc" id="L191">        } catch (MortPersonnageException e) {</span>
-            // TODO Auto-generated catch block
-<span class="nc" id="L193">            e.printStackTrace();</span>
-<span class="nc" id="L194">        }</span>
-<span class="nc" id="L195">        }</span>
+<span class="nc" id="L189">            getBoatByLabel(nomBateau).attaque(cible);</span>
+<span class="nc" id="L190">        } catch (MortPersonnageException e) {</span>
+<span class="nc" id="L191">            e.printStackTrace();</span>
+<span class="nc" id="L192">        }</span>
+<span class="nc" id="L193">        }</span>
 
     @Override
     protected void choisirAction() {
-<span class="nc" id="L199">        System.out.println(this.pseudo + &quot;, que voulez vous faire entre (1)Attaquer et (2)Déplacer un bateau ?&quot;);</span>
-<span class="nc" id="L200">    }</span>
+<span class="nc" id="L197">        System.out.println(this.pseudo + &quot;, que voulez vous faire entre (1)Attaquer et (2)Déplacer un bateau ?&quot;);</span>
+<span class="nc" id="L198">    }</span>
     }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

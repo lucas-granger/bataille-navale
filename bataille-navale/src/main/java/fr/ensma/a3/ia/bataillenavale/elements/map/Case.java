@@ -10,22 +10,28 @@ import fr.ensma.a3.ia.bataillenavale.outils.MortPersonnageException;
 
 
 public class Case implements ICase, IAttaquable{
+    private Plateau plateau;
     private Integer colonne;
     private Integer ligne;
     public Map<ElementJeu, Integer> pointsDeVieParElement;
 
-    public Case(Integer colonne, Integer ligne) {
+    public Case(Plateau plateau, Integer colonne, Integer ligne) {
+        this.plateau = plateau;
         this.colonne = colonne;
         this.ligne = ligne;
         this.pointsDeVieParElement = new HashMap<>();
     }
 
+    public Plateau getPlateau() {
+        return this.plateau;
+    }
+
     public Integer getColonne() {
-        return colonne;
+        return this.colonne;
     }
 
     public Integer getLigne() {
-        return ligne;
+        return this.ligne;
     }
 
     public boolean contientElement(ElementJeu element) {
@@ -51,8 +57,8 @@ public class Case implements ICase, IAttaquable{
         for (ElementJeu element : elements) {
             Integer pointsDeVieActuels = this.pointsDeVieParElement.get(element);
             this.pointsDeVieParElement.put(element, pointsDeVieActuels - puissAtk);
+            element.estAttaque(puissAtk);
             System.out.println(element + " : Oh non ma vie!!!" + pointsDeVieActuels + "-->" + this.pointsDeVieParElement.get(element));
-            System.out.println(element.estCoule());
             if (element.estCoule()) {
                 System.out.println(element + " : Argh je meurs...");
                 throw new MortPersonnageException(element);

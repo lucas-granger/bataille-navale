@@ -2,11 +2,6 @@ package fr.ensma.a3.ia.bataillenavale.elements.map;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
-import fr.ensma.a3.ia.bataillenavale.elements.bateaux.Bateau;
-import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.Torpilleur;
 
 
 public class Plateau {
@@ -23,10 +18,14 @@ public class Plateau {
         this.grille = new Case[taille][taille];
         for (Integer i = 0; i < taille; i++) {
             for (Integer j = 0; j < taille; j++) {
-            this.grille[i][j] = new Case(i, j);
+            this.grille[i][j] = new Case(this, i, j);
             }
         }
         System.out.println("Grille créée");
+    }
+
+    public Case getCase(Integer x, Integer y) {
+        return this.grille[x][y];
     }
 
     private Boolean demanderTaillePlateau(Boolean error) {

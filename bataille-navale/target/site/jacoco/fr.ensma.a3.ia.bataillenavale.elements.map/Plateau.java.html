@@ -2,63 +2,62 @@
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
-import fr.ensma.a3.ia.bataillenavale.elements.bateaux.Bateau;
-import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.Torpilleur;
 
 
 public class Plateau {
     private Integer taille; // Taille du plateau (10x10 dans notre cas)
     public Case[][] grille; // Grille du plateau contenant les cases
-<span class="nc" id="L15">    protected BufferedReader in = new BufferedReader(new InputStreamReader(System.in));</span>
+<span class="nc" id="L10">    protected BufferedReader in = new BufferedReader(new InputStreamReader(System.in));</span>
 
 
-<span class="nc" id="L18">    public Plateau() {</span>
-<span class="nc" id="L19">        Boolean error = true;</span>
-<span class="nc bnc" id="L20" title="All 2 branches missed.">        while (error) {</span>
-<span class="nc" id="L21">            error = demanderTaillePlateau(error);</span>
+<span class="nc" id="L13">    public Plateau() {</span>
+<span class="nc" id="L14">        Boolean error = true;</span>
+<span class="nc bnc" id="L15" title="All 2 branches missed.">        while (error) {</span>
+<span class="nc" id="L16">            error = demanderTaillePlateau(error);</span>
         }
-<span class="nc" id="L23">        this.grille = new Case[taille][taille];</span>
-<span class="nc bnc" id="L24" title="All 2 branches missed.">        for (Integer i = 0; i &lt; taille; i++) {</span>
-<span class="nc bnc" id="L25" title="All 2 branches missed.">            for (Integer j = 0; j &lt; taille; j++) {</span>
-<span class="nc" id="L26">            this.grille[i][j] = new Case(i, j);</span>
+<span class="nc" id="L18">        this.grille = new Case[taille][taille];</span>
+<span class="nc bnc" id="L19" title="All 2 branches missed.">        for (Integer i = 0; i &lt; taille; i++) {</span>
+<span class="nc bnc" id="L20" title="All 2 branches missed.">            for (Integer j = 0; j &lt; taille; j++) {</span>
+<span class="nc" id="L21">            this.grille[i][j] = new Case(this, i, j);</span>
             }
         }
-<span class="nc" id="L29">        System.out.println(&quot;Grille créée&quot;);</span>
-<span class="nc" id="L30">    }</span>
+<span class="nc" id="L24">        System.out.println(&quot;Grille créée&quot;);</span>
+<span class="nc" id="L25">    }</span>
+
+    public Case getCase(Integer x, Integer y) {
+<span class="nc" id="L28">        return this.grille[x][y];</span>
+    }
 
     private Boolean demanderTaillePlateau(Boolean error) {
-<span class="nc" id="L33">        String input = &quot;&quot;;</span>
-<span class="nc" id="L34">        System.out.print(&quot;Quelle taille de plateau désirez-vous : &quot;);</span>
+<span class="nc" id="L32">        String input = &quot;&quot;;</span>
+<span class="nc" id="L33">        System.out.print(&quot;Quelle taille de plateau désirez-vous : &quot;);</span>
         try {
-<span class="nc" id="L36">            input = this.in.readLine();</span>
-<span class="nc" id="L37">        } catch (java.io.IOException e) {</span>
-<span class="nc" id="L38">            System.out.println(&quot;Une erreur est survenue : &quot; + e);</span>
-<span class="nc" id="L39">        }</span>
+<span class="nc" id="L35">            input = this.in.readLine();</span>
+<span class="nc" id="L36">        } catch (java.io.IOException e) {</span>
+<span class="nc" id="L37">            System.out.println(&quot;Une erreur est survenue : &quot; + e);</span>
+<span class="nc" id="L38">        }</span>
         try {
-<span class="nc" id="L41">            Integer t = Integer.valueOf(input);</span>
-<span class="nc bnc" id="L42" title="All 4 branches missed.">            if (t &lt; 7 || t &gt; 15) {</span>
-<span class="nc" id="L43">                System.out.println(&quot;Veuillez entrer un entier entre 7 et 15&quot;);</span>
+<span class="nc" id="L40">            Integer t = Integer.valueOf(input);</span>
+<span class="nc bnc" id="L41" title="All 4 branches missed.">            if (t &lt; 7 || t &gt; 15) {</span>
+<span class="nc" id="L42">                System.out.println(&quot;Veuillez entrer un entier entre 7 et 15&quot;);</span>
             } else {
-<span class="nc" id="L45">                this.taille = t;</span>
-<span class="nc" id="L46">                error = false;</span>
+<span class="nc" id="L44">                this.taille = t;</span>
+<span class="nc" id="L45">                error = false;</span>
             } 
-<span class="nc" id="L48">        } catch (NumberFormatException e) {</span>
-<span class="nc" id="L49">            System.out.println(&quot;Veuillez entrer un entier&quot; + e);</span>
-<span class="nc" id="L50">        }</span>
-<span class="nc" id="L51">        return error;</span>
+<span class="nc" id="L47">        } catch (NumberFormatException e) {</span>
+<span class="nc" id="L48">            System.out.println(&quot;Veuillez entrer un entier&quot; + e);</span>
+<span class="nc" id="L49">        }</span>
+<span class="nc" id="L50">        return error;</span>
     }
 
     // Getters et setters pour la taille du plateau
     public Integer getTaille() {
-<span class="nc" id="L56">        return taille;</span>
+<span class="nc" id="L55">        return taille;</span>
     }
 
     public void setTaille(Integer taille) {
-<span class="nc" id="L60">        this.taille = taille;</span>
-<span class="nc" id="L61">    }</span>
+<span class="nc" id="L59">        this.taille = taille;</span>
+<span class="nc" id="L60">    }</span>
 
     // // Méthode pour vérifier si un emplacement est valide pour placer un élément
     // private boolean emplacementValide(ElementJeu element, Integer colonne, Integer ligne) {
@@ -81,16 +80,16 @@ public class Plateau {
 
     // Méthode pour afficher l'état actuel du plateau (débogage)
     public void afficherPlateau() {
-<span class="nc bnc" id="L84" title="All 2 branches missed.">        for (Integer i = 0; i &lt; taille; i++) {</span>
-<span class="nc bnc" id="L85" title="All 2 branches missed.">            for (Integer j = 0; j &lt; taille; j++) {</span>
-<span class="nc bnc" id="L86" title="All 2 branches missed.">                if (grille[i][j] != null) {</span>
-<span class="nc" id="L87">                    System.out.print(&quot; X &quot;); // Case occupée par un élément de jeu</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">        for (Integer i = 0; i &lt; taille; i++) {</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            for (Integer j = 0; j &lt; taille; j++) {</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">                if (grille[i][j] != null) {</span>
+<span class="nc" id="L86">                    System.out.print(&quot; X &quot;); // Case occupée par un élément de jeu</span>
                 } else {
-<span class="nc" id="L89">                    System.out.print(&quot; . &quot;); // Eau</span>
+<span class="nc" id="L88">                    System.out.print(&quot; . &quot;); // Eau</span>
                 }
             }
-<span class="nc" id="L92">            System.out.println(); // Nouvelle ligne pour chaque ligne du plateau</span>
+<span class="nc" id="L91">            System.out.println(); // Nouvelle ligne pour chaque ligne du plateau</span>
         }
-<span class="nc" id="L94">    }</span>
+<span class="nc" id="L93">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -60,12 +60,10 @@ public abstract class ElementJeu implements ISuperposable, IAttaquable {
     public boolean estCoule() {
 <span class="nc bnc" id="L61" title="All 2 branches missed.">        for (Case cell : cases) {</span>
 <span class="nc bnc" id="L62" title="All 2 branches missed.">            if (cell.pointsDeVieParElement.get(this) &gt; 0) {</span>
-<span class="nc" id="L63">                System.out.println(&quot;Bateau good&quot;);</span>
-<span class="nc" id="L64">                return false; // The boat is not sunk if any case still has life</span>
+<span class="nc" id="L63">                return false; // The boat is not sunk if any case still has life</span>
             }
-<span class="nc" id="L66">        }</span>
-<span class="nc" id="L67">        System.out.println(&quot;Bateau coule&quot;);</span>
-<span class="nc" id="L68">        return true; // All cases are at 0 or below</span>
+<span class="nc" id="L65">        }</span>
+<span class="nc" id="L66">        return true; // All cases are at 0 or below</span>
     }
 
     // /**
@@ -81,12 +79,12 @@ public abstract class ElementJeu implements ISuperposable, IAttaquable {
      */
     @Override
     public boolean equals(Object obj) {
-<span class="nc bnc" id="L84" title="All 2 branches missed.">        if (obj == null)</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        if (obj == null)</span>
+<span class="nc" id="L83">            return false;</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        if (getClass() != obj.getClass())</span>
 <span class="nc" id="L85">            return false;</span>
-<span class="nc bnc" id="L86" title="All 2 branches missed.">        if (getClass() != obj.getClass())</span>
-<span class="nc" id="L87">            return false;</span>
         //ElementJeu other = (ElementJeu) obj;
-<span class="nc" id="L89">        return true;</span>
+<span class="nc" id="L87">        return true;</span>
     }
 
     // /**

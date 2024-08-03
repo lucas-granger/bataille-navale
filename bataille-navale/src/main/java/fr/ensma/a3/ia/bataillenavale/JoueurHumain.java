@@ -9,7 +9,6 @@ import fr.ensma.a3.ia.bataillenavale.elements.bateaux.Bateau;
 import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.BateauMilitaire;
 import fr.ensma.a3.ia.bataillenavale.elements.map.Case;
 import fr.ensma.a3.ia.bataillenavale.elements.objets.Bombe;
-import fr.ensma.a3.ia.bataillenavale.outils.Config;
 import fr.ensma.a3.ia.bataillenavale.outils.CoordinateHelper;
 import fr.ensma.a3.ia.bataillenavale.outils.MortPersonnageException;
 
@@ -189,7 +188,6 @@ public class JoueurHumain extends Joueur {
         try {
             getBoatByLabel(nomBateau).attaque(cible);
         } catch (MortPersonnageException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         }

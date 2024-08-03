@@ -10,58 +10,64 @@ import fr.ensma.a3.ia.bataillenavale.outils.MortPersonnageException;
 
 
 public class Case implements ICase, IAttaquable{
+    private Plateau plateau;
     private Integer colonne;
     private Integer ligne;
     public Map&lt;ElementJeu, Integer&gt; pointsDeVieParElement;
 
-<span class="nc" id="L17">    public Case(Integer colonne, Integer ligne) {</span>
-<span class="nc" id="L18">        this.colonne = colonne;</span>
-<span class="nc" id="L19">        this.ligne = ligne;</span>
-<span class="nc" id="L20">        this.pointsDeVieParElement = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L21">    }</span>
+<span class="nc" id="L18">    public Case(Plateau plateau, Integer colonne, Integer ligne) {</span>
+<span class="nc" id="L19">        this.plateau = plateau;</span>
+<span class="nc" id="L20">        this.colonne = colonne;</span>
+<span class="nc" id="L21">        this.ligne = ligne;</span>
+<span class="nc" id="L22">        this.pointsDeVieParElement = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L23">    }</span>
+
+    public Plateau getPlateau() {
+<span class="nc" id="L26">        return this.plateau;</span>
+    }
 
     public Integer getColonne() {
-<span class="nc" id="L24">        return colonne;</span>
+<span class="nc" id="L30">        return this.colonne;</span>
     }
 
     public Integer getLigne() {
-<span class="nc" id="L28">        return ligne;</span>
+<span class="nc" id="L34">        return this.ligne;</span>
     }
 
     public boolean contientElement(ElementJeu element) {
-<span class="nc" id="L32">        return this.pointsDeVieParElement.containsKey(element);</span>
+<span class="nc" id="L38">        return this.pointsDeVieParElement.containsKey(element);</span>
     }
 
     @Override
     public void rejoindreCase(ElementJeu obs, Integer pointsDeVie) {
-<span class="nc" id="L37">        this.pointsDeVieParElement.put(obs, pointsDeVie);</span>
-<span class="nc" id="L38">        obs.ajouterCase(this);</span>
-<span class="nc" id="L39">    }</span>
+<span class="nc" id="L43">        this.pointsDeVieParElement.put(obs, pointsDeVie);</span>
+<span class="nc" id="L44">        obs.ajouterCase(this);</span>
+<span class="nc" id="L45">    }</span>
 
     @Override
     public void quitterCase(ElementJeu obs) {
-<span class="nc" id="L43">        this.pointsDeVieParElement.remove(obs);</span>
-<span class="nc" id="L44">        obs.supprimerCase(this);</span>
+<span class="nc" id="L49">        this.pointsDeVieParElement.remove(obs);</span>
+<span class="nc" id="L50">        obs.supprimerCase(this);</span>
 
-<span class="nc" id="L46">    }</span>
+<span class="nc" id="L52">    }</span>
 
     @Override
     public void estAttaque(Integer puissAtk) throws MortPersonnageException {
-<span class="nc" id="L50">        Set&lt;ElementJeu&gt; elements = this.pointsDeVieParElement.keySet();</span>
-<span class="nc bnc" id="L51" title="All 2 branches missed.">        for (ElementJeu element : elements) {</span>
-<span class="nc" id="L52">            Integer pointsDeVieActuels = this.pointsDeVieParElement.get(element);</span>
-<span class="nc" id="L53">            this.pointsDeVieParElement.put(element, pointsDeVieActuels - puissAtk);</span>
-<span class="nc" id="L54">            System.out.println(element + &quot; : Oh non ma vie!!!&quot; + pointsDeVieActuels + &quot;--&gt;&quot; + this.pointsDeVieParElement.get(element));</span>
-<span class="nc" id="L55">            System.out.println(element.estCoule());</span>
-<span class="nc bnc" id="L56" title="All 2 branches missed.">            if (element.estCoule()) {</span>
-<span class="nc" id="L57">                System.out.println(&quot;Argh je meurs...&quot;);</span>
-<span class="nc" id="L58">                throw new MortPersonnageException(element);</span>
+<span class="nc" id="L56">        Set&lt;ElementJeu&gt; elements = this.pointsDeVieParElement.keySet();</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        for (ElementJeu element : elements) {</span>
+<span class="nc" id="L58">            Integer pointsDeVieActuels = this.pointsDeVieParElement.get(element);</span>
+<span class="nc" id="L59">            this.pointsDeVieParElement.put(element, pointsDeVieActuels - puissAtk);</span>
+<span class="nc" id="L60">            element.estAttaque(puissAtk);</span>
+<span class="nc" id="L61">            System.out.println(element + &quot; : Oh non ma vie!!!&quot; + pointsDeVieActuels + &quot;--&gt;&quot; + this.pointsDeVieParElement.get(element));</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            if (element.estCoule()) {</span>
+<span class="nc" id="L63">                System.out.println(element + &quot; : Argh je meurs...&quot;);</span>
+<span class="nc" id="L64">                throw new MortPersonnageException(element);</span>
             }
-<span class="nc" id="L60">        }</span>
-<span class="nc" id="L61">    }</span>
+<span class="nc" id="L66">        }</span>
+<span class="nc" id="L67">    }</span>
     public void stringify() {
-<span class="nc" id="L63">        System.out.println(this.pointsDeVieParElement);</span>
-<span class="nc" id="L64">    }</span>
+<span class="nc" id="L69">        System.out.println(this.pointsDeVieParElement);</span>
+<span class="nc" id="L70">    }</span>
 
 
     // @Override

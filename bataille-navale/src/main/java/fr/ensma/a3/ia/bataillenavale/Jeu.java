@@ -1,7 +1,5 @@
 package fr.ensma.a3.ia.bataillenavale;
 
-import fr.ensma.a3.ia.bataillenavale.elements.map.Plateau;
-
 public class Jeu {
     public Boolean jeuTermine = false;
     public Joueur joueur1;

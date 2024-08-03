@@ -1,7 +1,6 @@
 package fr.ensma.a3.ia.bataillenavale;
 
 import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.Croiseur;
-import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.Torpilleur;
 import fr.ensma.a3.ia.bataillenavale.elements.comportement.deplacements.EnAvancant;
 import fr.ensma.a3.ia.bataillenavale.outils.ValParamException;
 

@@ -8,28 +8,26 @@ import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.ContreTorpilleu
 import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.Croiseur;
 import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.SousMarin;
 import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.Torpilleur;
-import fr.ensma.a3.ia.bataillenavale.elements.map.Case;
 import fr.ensma.a3.ia.bataillenavale.elements.map.Plateau;
 
 /**
  * Represents a player
  */
-<span class="nc" id="L17">public abstract class Joueur {</span>
+<span class="nc" id="L16">public abstract class Joueur {</span>
 
     protected String pseudo;
-<span class="nc" id="L20">    public Plateau plateau = new Plateau();</span>
-<span class="nc" id="L21">    protected BateauMilitaire[] boats = {</span>
+<span class="nc" id="L19">    public Plateau plateau = new Plateau();</span>
+<span class="nc" id="L20">    protected BateauMilitaire[] boats = {</span>
         // new PorteAvion(),
         new Croiseur(),
         new ContreTorpilleur(),
         new SousMarin(),
         new Torpilleur()
     };
-<span class="nc" id="L28">    protected BufferedReader in = new BufferedReader(new InputStreamReader(System.in));</span>
+<span class="nc" id="L27">    protected BufferedReader in = new BufferedReader(new InputStreamReader(System.in));</span>
     private Integer statNbTotalShot;
     private Integer statNbSuccessfullShot;
     private Integer statNbBoatShot;
-<span class="nc" id="L32">    private Case lastCellShot = new Case(-1, -1);</span>
 
     protected abstract void placeBoats();
     protected abstract void attaquer(Joueur enemy);
@@ -41,8 +39,8 @@ import fr.ensma.a3.ia.bataillenavale.elements.map.Plateau;
      * @return void
      */
     protected void incrementStatNbTotalShot() {
-<span class="nc" id="L44">        statNbTotalShot++;</span>
-<span class="nc" id="L45">    }</span>
+<span class="nc" id="L42">        statNbTotalShot++;</span>
+<span class="nc" id="L43">    }</span>
 
     /**
      * Increases the number of successfull shots fired by the player
@@ -50,8 +48,8 @@ import fr.ensma.a3.ia.bataillenavale.elements.map.Plateau;
      * @return void
      */
     protected void incrementStatNbSuccessfullShot() {
-<span class="nc" id="L53">        statNbSuccessfullShot++;</span>
-<span class="nc" id="L54">    }</span>
+<span class="nc" id="L51">        statNbSuccessfullShot++;</span>
+<span class="nc" id="L52">    }</span>
 
     /**
      * Increases the number of ships sunk by the player
@@ -59,8 +57,8 @@ import fr.ensma.a3.ia.bataillenavale.elements.map.Plateau;
      * @return void
      */
     protected void incrementStatNbBoatShot() {
-<span class="nc" id="L62">        statNbBoatShot++;</span>
-<span class="nc" id="L63">    }</span>
+<span class="nc" id="L60">        statNbBoatShot++;</span>
+<span class="nc" id="L61">    }</span>
 
     /**
      * Gets the plateau of the player
@@ -68,7 +66,7 @@ import fr.ensma.a3.ia.bataillenavale.elements.map.Plateau;
      * @return Plateau
      */
     protected Plateau getPlateau() {
-<span class="nc" id="L71">        return this.plateau;</span>
+<span class="nc" id="L69">        return this.plateau;</span>
     }
 
     /**
@@ -77,7 +75,7 @@ import fr.ensma.a3.ia.bataillenavale.elements.map.Plateau;
      * @return String
      */
     protected String getPlayerName() {
-<span class="nc" id="L80">        return this.pseudo;</span>
+<span class="nc" id="L78">        return this.pseudo;</span>
     }
 
     /**
@@ -86,37 +84,17 @@ import fr.ensma.a3.ia.bataillenavale.elements.map.Plateau;
      * @return void
      */
     protected void printStats() {
-<span class="nc" id="L89">        System.out.println();</span>
+<span class="nc" id="L87">        System.out.println();</span>
+<span class="nc" id="L88">        System.out.println(&quot;║&quot;);</span>
+<span class="nc" id="L89">        System.out.println(&quot;║ Statistiques de jeu de &quot; + pseudo + &quot; :&quot;);</span>
 <span class="nc" id="L90">        System.out.println(&quot;║&quot;);</span>
-<span class="nc" id="L91">        System.out.println(&quot;║ Statistiques de jeu de &quot; + pseudo + &quot; :&quot;);</span>
-<span class="nc" id="L92">        System.out.println(&quot;║&quot;);</span>
-<span class="nc" id="L93">        System.out.println(&quot;║ Nombre de tirs réalisés : &quot; + statNbTotalShot);</span>
-<span class="nc" id="L94">        System.out.println(&quot;║ Nombre de tirs réussis : &quot; + statNbSuccessfullShot);</span>
-<span class="nc" id="L95">        System.out.println(&quot;║ Précision : &quot; + (double) Math.round(((double) (statNbSuccessfullShot) / (double) (statNbTotalShot)) * 100.0) + &quot;%&quot;);</span>
+<span class="nc" id="L91">        System.out.println(&quot;║ Nombre de tirs réalisés : &quot; + statNbTotalShot);</span>
+<span class="nc" id="L92">        System.out.println(&quot;║ Nombre de tirs réussis : &quot; + statNbSuccessfullShot);</span>
+<span class="nc" id="L93">        System.out.println(&quot;║ Précision : &quot; + (double) Math.round(((double) (statNbSuccessfullShot) / (double) (statNbTotalShot)) * 100.0) + &quot;%&quot;);</span>
         // System.out.println(&quot;║ Nombre de bateaux adverses détruis : &quot; + statNbBoatShot + &quot;/&quot; + Config.getNbBoats());
-<span class="nc" id="L97">        System.out.println(&quot;║&quot;);</span>
-<span class="nc" id="L98">    }</span>
+<span class="nc" id="L95">        System.out.println(&quot;║&quot;);</span>
+<span class="nc" id="L96">    }</span>
 
-    /**
-     * Gets the last shot made by the player
-     * 
-     * @return Case
-     */
-    protected Case getLastCellShot() {
-<span class="nc" id="L106">        return lastCellShot;</span>
-    }
-
-    /**
-     * Saves the last shot made by the player
-     * 
-     * @param Integer x
-     * @param Integer y
-     * 
-     * @return void
-     */
-    protected void setLastCellShot(Integer x, Integer y) {
-<span class="nc" id="L118">        lastCellShot = new Case(x, y);</span>
-<span class="nc" id="L119">    }</span>
     protected abstract void choisirAction();
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

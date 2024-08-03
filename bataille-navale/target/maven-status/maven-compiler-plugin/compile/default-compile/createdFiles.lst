@@ -17,6 +17,7 @@ fr\ensma\a3\ia\bataillenavale\elements\comportement\attaques\ICompoAttaque.class
 fr\ensma\a3\ia\bataillenavale\elements\comportement\deplacements\IDeplacement.class
 fr\ensma\a3\ia\bataillenavale\elements\bateaux\militaires\Croiseur.class
 fr\ensma\a3\ia\bataillenavale\elements\comportement\deplacements\IDeplacable.class
+fr\ensma\a3\ia\bataillenavale\elements\comportement\attaques\Explosion.class
 fr\ensma\a3\ia\bataillenavale\outils\Config.class
 fr\ensma\a3\ia\bataillenavale\outils\CoordinateHelper.class
 fr\ensma\a3\ia\bataillenavale\elements\comportement\attaques\IAttaquable.class

@@ -1,9 +1,5 @@
 package fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import fr.ensma.a3.ia.bataillenavale.elements.bateaux.Bateau;
 import fr.ensma.a3.ia.bataillenavale.elements.comportement.attaques.IAttaquable;
 import fr.ensma.a3.ia.bataillenavale.elements.map.Case;
 import fr.ensma.a3.ia.bataillenavale.outils.MortPersonnageException;
@@ -16,9 +12,14 @@ public class Torpilleur extends BateauMilitaire {
     }
 
     @Override
+    public void attaque(Case cible) throws MortPersonnageException {
+        compAtt.attaquer(this, cible);
+    }
+
+    @Override
     public void attaque(IAttaquable cible) throws MortPersonnageException {
-        System.out.println("Attaque du "+this.name);
-        cible.estAttaque(this.puissanceDAttaque);
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'attaque'");
     }
 
     @Override

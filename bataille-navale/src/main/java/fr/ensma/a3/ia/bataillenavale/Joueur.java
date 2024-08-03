@@ -8,7 +8,6 @@ import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.ContreTorpilleu
 import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.Croiseur;
 import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.SousMarin;
 import fr.ensma.a3.ia.bataillenavale.elements.bateaux.militaires.Torpilleur;
-import fr.ensma.a3.ia.bataillenavale.elements.map.Case;
 import fr.ensma.a3.ia.bataillenavale.elements.map.Plateau;
 
 /**
@@ -29,7 +28,6 @@ public abstract class Joueur {
     private Integer statNbTotalShot;
     private Integer statNbSuccessfullShot;
     private Integer statNbBoatShot;
-    private Case lastCellShot = new Case(-1, -1);
 
     protected abstract void placeBoats();
     protected abstract void attaquer(Joueur enemy);
@@ -97,25 +95,5 @@ public abstract class Joueur {
         System.out.println("║");
     }
 
-    /**
-     * Gets the last shot made by the player
-     * 
-     * @return Case
-     */
-    protected Case getLastCellShot() {
-        return lastCellShot;
-    }
-
-    /**
-     * Saves the last shot made by the player
-     * 
-     * @param Integer x
-     * @param Integer y
-     * 
-     * @return void
-     */
-    protected void setLastCellShot(Integer x, Integer y) {
-        lastCellShot = new Case(x, y);
-    }
     protected abstract void choisirAction();
 }
